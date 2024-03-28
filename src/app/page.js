@@ -24,6 +24,10 @@ export default function Home() {
   // Function to handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!addressValue) {
+      alert("Please select an address");
+      return;
+    }
     setSubmitted(true);
   };
 
@@ -57,13 +61,12 @@ export default function Home() {
             {/* https://tintef.github.io/react-google-places-autocomplete/docs/ */}
             <GooglePlacesAutocomplete
               apiKey={process.env.NEXT_PUBLIC_MAPS_API_KEY}
-              value={formValue.address}
-              placeholder="Find your address"
               onChange={handleChange}
               selectProps={{
                 mapValue: addressValue,
                 onChange: setAddressValue,
               }}
+              debounce={300}
             />
           </div>
 
@@ -90,7 +93,7 @@ export default function Home() {
               Email: <span className="text-green-700">{formValue.email}</span>
             </p>
             <p className="text-l">
-              Address:
+              Address:{" "}
               <span className="text-green-700">{addressValue.label}</span>
             </p>
           </div>
