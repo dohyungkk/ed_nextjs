@@ -6,11 +6,10 @@ export default function Home() {
   const [formValue, setFormValue] = useState({
     name: "",
     email: "",
-    address: "",
   });
 
   // To retrieve the field value from GooglePlacesAutocomplete
-  const [mapValue, setMapValue] = useState(null);
+  const [addressValue, setAddressValue] = useState(null);
 
   const [submitted, setSubmitted] = useState(false);
 
@@ -32,7 +31,7 @@ export default function Home() {
     <div class="h-screen w-screen flex items-center justify-center bg-blue-100">
       <main>
         <form
-          className="flex flex-col items-center justify-center"
+          className="flex flex-col items-center justify-center w-full"
           onSubmit={handleSubmit}
         >
           <label className="text-xl font-bold">Name</label>
@@ -57,21 +56,21 @@ export default function Home() {
           <div className="border-2 border-gray-400 text-center rounded-lg p-2 m-2 w-3/4">
             {/* https://tintef.github.io/react-google-places-autocomplete/docs/ */}
             <GooglePlacesAutocomplete
-              selectProps={{
-                mapValue,
-                onChange: setMapValue,
-              }}
               apiKey={process.env.NEXT_PUBLIC_MAPS_API_KEY}
               value={formValue.address}
-              placeholder="Enter your address"
+              placeholder="Find your address"
               onChange={handleChange}
+              selectProps={{
+                mapValue: addressValue,
+                onChange: setAddressValue,
+              }}
             />
           </div>
 
           <br />
 
           <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-3/4"
             type="submit"
           >
             Submit
@@ -91,7 +90,8 @@ export default function Home() {
               Email: <span className="text-green-700">{formValue.email}</span>
             </p>
             <p className="text-l">
-              Address: <span className="text-green-700">{mapValue.label}</span>
+              Address:
+              <span className="text-green-700">{addressValue.label}</span>
             </p>
           </div>
         )}
