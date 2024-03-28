@@ -73,7 +73,7 @@ export default function Page() {
           <br />
 
           <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-3/4"
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 rounded w-3/4"
             type="submit"
           >
             Submit
