@@ -2,7 +2,7 @@
 import { useState } from "react";
 import GooglePlacesAutocomplete from "react-google-places-autocomplete";
 
-export default function Home() {
+export default function Page() {
   const [formValue, setFormValue] = useState({
     name: "",
     email: "",
